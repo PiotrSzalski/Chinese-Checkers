@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>816</x>
+      <y>80</y>
+      <w>376</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>gamepackage::Board
+--
++numberOfCircles = 121: int
+-circles: ArrayList&lt;ColorCircle&gt;
+-connector: Connector
+-boardImage: BoardImage
+-myTurn: boolean
+-playerId: int
+--
++Board(int numberOfPlayers, BoardImage boardImage): ctor
++createBoard(): void
++createRaw(float startX, float row, int circlesNumber, Color color): void
++createPlayer(int players[], Color color): void
++move(int c1, int c2, Color color): void
++opponentMove(String move): void
++setConnector(Connector c): void
++setPlayerId(int id): void
++endTurn(JTextArea communicator): void
++myTurn(): void
++getCircles(): ArrayList&lt;ColorCircle&gt;
++myId(): int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1280</x>
+      <y>416</y>
+      <w>208</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>gamepackage::Client
+--
+-clientWindow: JFrame
+-backgroundPanel: BackgroundPanel
+-movesInfo: JTextArea
+-currentPlayer: JTextArea
+-places: JTextArea
+-boardImage: BoardImage
+-endTurn: JButton
+-board: Board
+--
++Client(): ctor
+-setMyColor(Color color): void
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>968</x>
+      <y>768</y>
+      <w>408</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>gamepackage::MoveListener
+--
+-circles: ArrayList&lt;ColorCircle&gt;
+-boardImage: BoardImage
+-clickedCircle: int
+--
++MoveListener(BoardImage boardImage, ArrayList&lt;ColorCircle&gt; circles): ctor
++mouseClicked(MouseEvent arg0): void
++mouseEntered(MouseEvent arg0): void
++mouseExited(MouseEvent arg0): void
++mousePressed(MouseEvent arg0): void
++mouseReleased(MouseEvent arg0): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1280</x>
+      <y>208</y>
+      <w>240</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>gamepackage::ColorCircle
+--
++height = 30: float
++width = 30: float
+-color: Color
+--
+~ColorCircle(float x, float y, Color color): ctor
++getColor(): Color
++setColor(Color color): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>968</x>
+      <y>448</y>
+      <w>200</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>gamepackage::BoardImage
+--
+-board: Board
+--
++BoardImage(): ctor
++setBoard(Board board): void
++getBoard(): Board
++paintComponent(Graphics g): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>288</x>
+      <y>104</y>
+      <w>376</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>gameServer::Game
+--
+-players: Player[]
+-numberOfPlayers: int
+-board: Board
+-endOfMoves: boolean
+-jumpingCircle: ColorCircle
+--
++Game(int numberOfPlayers): ctor
++setPlayers(Player[] players): void
++getPlayers(): Player[]
++getNumberOfPlayers(): int
++whoBeginsGame(): void
++checkMoveProperiety(String line, Color playerColor, int[] aim): boolean
++reset(): void
++checkWin(int aim[], Color playerColor): boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1272</x>
+      <y>0</y>
+      <w>536</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>gameServer::Connector
+--
+-movesInfo: JTextArea
+-currentPlayer: JTextArea
+-places: JTextArea
++in: BufferedReader
++out: PrintWriter
+-s: Socket
+-board: Board
+--
++Connector(): ctor
++setBoardImage(Board board, JTextArea movesInfo, JTextArea currentPlayer, JTextArea places): void
++play(): void
++sendMessageToServer(String text): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>152</x>
+      <y>792</y>
+      <w>360</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+states::State
+--
++player = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }: int[]
++player1 = { 10, 11, 12, 13, 23, 24, 25, 35, 36, 46 }: int[]
++player2 = { 19, 20, 21, 22, 32, 33, 34, 44, 45, 55 }: int[]
++player3 = { 65, 75, 76, 86, 87, 88, 98, 99, 100, 101 }: int[]
++player4 = { 74, 84, 85, 95, 96, 97, 107, 108, 109, 110 }: int[]
++player5 = { 111, 112, 113, 114, 115, 116, 117, 118, 119, 120 }: int[]
+--
+~setAreasForPlayers(Board board): void
+~setDestinationForPlayer(int playerId): int[]
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>232</x>
+      <y>640</y>
+      <w>208</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>states::StateController
+--
+-currentState: State
+--
++setState(int numberOfPlayers): void
++getState(): State
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>792</y>
+      <w>224</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>states::StateForFourPlayers
+--
+--
++setAreasForPlayers(Board board): void
++setDestinationForPlayer(int playerId): int[]
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>704</y>
+      <w>224</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>states::StateForSixPlayers
+--
+--
++setAreasForPlayers(Board board): void
++setDestinationForPlayer(int playerId): int[]
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>872</y>
+      <w>224</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>states::StateForThreePlayers
+--
+--
++setAreasForPlayers(Board board): void
++setDestinationForPlayer(int playerId): int[]
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>952</y>
+      <w>224</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>states::StateForTwoPlayers
+--
+--
++setAreasForPlayers(Board board): void
++setDestinationForPlayer(int playerId): int[]
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>432</y>
+      <w>152</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>gameServer::Server
+--
+--
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>736</y>
+      <w>152</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;implements&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;80.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>808</y>
+      <w>152</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;implements&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;50.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>872</y>
+      <w>152</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;implements&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>928</y>
+      <w>152</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;implements&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>448</y>
+      <w>136</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..6
+creates &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>328</x>
+      <y>584</y>
+      <w>32</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>712</y>
+      <w>32</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>304</y>
+      <w>40</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1..6
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>656</x>
+      <y>184</y>
+      <w>176</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1184</x>
+      <y>248</y>
+      <w>112</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=121
+</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1184</x>
+      <y>96</y>
+      <w>104</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;70.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1184</x>
+      <y>344</y>
+      <w>112</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>120.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1048</x>
+      <y>344</y>
+      <w>32</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1160</x>
+      <y>472</y>
+      <w>136</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1456</x>
+      <y>176</y>
+      <w>224</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m1=1
+m2=1
+connects to server &gt;</panel_attributes>
+    <additional_attributes>10.0;300.0;260.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>72</x>
+      <y>264</y>
+      <w>232</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+creates &gt;</panel_attributes>
+    <additional_attributes>10.0;210.0;270.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>544</y>
+      <w>128</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+listens on &gt;</panel_attributes>
+    <additional_attributes>130.0;280.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>392</y>
+      <w>264</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>gameServer::Bot
+--
+-Turn: boolean
+-rand: Random
+--
++Bot(Game game, int playerId, int numberOfPlayers)
++sendTurn(int id): void
++run(): void
++send(String text): void
+-inArray(int[] array, int x): Boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>376</y>
+      <w>392</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>gameServer::Player
+--
+-in: BufferedReader
+#client: Socket
+#out: PrintWriter
+#game: Game
+#playerId: int
+#playerColor: Color
+#destination[] = new int[10]: int
+#hasWon: boolean
+--
++Player(Socket socket, Game game, int playerId, int numberOfPlayers): ctor
++turn(int player): void
++hasWon(): boolean
++run(): void
++sendTurn(int player): void
++send(String text): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>456</y>
+      <w>48</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+</diagram>
