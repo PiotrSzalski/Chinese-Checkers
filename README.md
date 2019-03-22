@@ -7,7 +7,7 @@ The project operates on the basis of the client server architecture. In the game
 
 I created this project with my friend as an university project. I was responsible for client-server communication, logic of movements and some GUI functions.
 
-Instruction :
-1.Run Server.class and enter number of players and bots.
-2.Every player need to run his/her own program (Client.class).
+Instruction :<br/>
+1.Run Server.class and enter number of players and bots.<br/>
+2.Every player need to run his/her own program (Client.class).<br/>
 3.When all players are connected to server, server allow you to start the game.
