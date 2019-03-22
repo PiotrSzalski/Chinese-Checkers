@@ -10,4 +10,4 @@ I created this project with my friend as an university project. I was responsibl
 Instruction :
   1.Run Server.class and enter number of players and bots.
   2.Every player need to run his/her own program (Client.class).
-  2.When all players are connected to server, server allow you to start the game.
+  3.When all players are connected to server, server allow you to start the game.
