@@ -11,3 +11,7 @@ Instruction :<br/>
 1.Run Server.class and enter number of players and bots.<br/>
 2.Every player need to run his/her own program (Client.class).<br/>
 3.When all players are connected to server, server allow you to start the game.
+
+Some screens
+![s4](https://user-images.githubusercontent.com/48840104/54859793-d4b62380-4d11-11e9-9d17-ca6c592b0db3.png)
+![s5](https://user-images.githubusercontent.com/48840104/54859794-d54eba00-4d11-11e9-8339-2cee8ec8d4df.png)
