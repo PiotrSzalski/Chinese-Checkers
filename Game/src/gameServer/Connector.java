@@ -24,7 +24,7 @@ public class Connector
 	
 	public Connector() {
 		try {
-			s=new Socket("192.168.1.180",6666);
+			s=new Socket("localhost",6666);
 			out=new PrintWriter(s.getOutputStream(),true);
 			in=new BufferedReader(new InputStreamReader(s.getInputStream()));
 		} catch (UnknownHostException e) {
